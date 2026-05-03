@@ -6,7 +6,6 @@ import entities.User;
 
 public class UserServiceImpl implements UserService {
 
-    // Injecté par Spring via spring-beans.xml
     private UserDAO userDAO;
 
     public void setUserDAO(UserDAO userDAO) {
@@ -19,10 +18,7 @@ public class UserServiceImpl implements UserService {
         return userDAO.findByUsernameAndPassword(username.trim(), password.trim());
     }
 
-    /**
-     * Insère les utilisateurs par défaut si ils n'existent pas.
-     * Appelé via init-method dans spring-beans.xml.
-     */
+   
     @Override
     public void initDefaultUsers() {
         insertIfNotExists("admin",    "admin123", "ADMIN");
