@@ -2,10 +2,7 @@ package entities;
 
 import javax.persistence.*;
 
-/**
- * Entité JPA Produit — mappée sur la table "produits" en MySQL.
- * Utilise javax.persistence (compatible Hibernate 5.x + Tomcat 9)
- */
+ 
 @Entity
 @Table(name = "produits")
 public class Produit {
