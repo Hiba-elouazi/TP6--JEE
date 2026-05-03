@@ -4,10 +4,6 @@ import org.hibernate.Session;
 import org.hibernate.SessionFactory;
 import org.hibernate.cfg.Configuration;
 
-/**
- * Utilitaire Hibernate — Singleton de SessionFactory.
- * Charge hibernate.cfg.xml et crée la SessionFactory une seule fois.
- */
 public class HibernateUtil {
 
     private static SessionFactory sessionFactory;
