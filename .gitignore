@@ -1,0 +1,57 @@
+# Maven
+target/
+pom.xml.tag
+pom.xml.releaseBackup
+pom.xml.versionsBackup
+pom.xml.next
+release.properties
+dependency-reduced-pom.xml
+build.log
+.m2/tmpr*
+
+# Eclipse
+.apt_generated
+.classpath
+.factorypath
+.project
+.settings/
+.springBeans
+.sts4-cache
+bin/
+
+# IDEs
+out/
+*.iml
+*.iws
+*.ipr
+.idea/
+nbproject/private/
+nbbuild/
+dist/
+nbdist/
+.nb-gradle/
+
+# OS / Editor
+.DS_Store
+Thumbs.db
+*.swp
+*.swo
+*~
+*.log
+
+# Sensitive
+src/main/resources/db-credentials.properties
+src/main/resources/application-local.properties
+*.key
+*.pem
+
+# Tomcat / Local
+.metadata/
+servers/
+tomcat-work/
+
+# Compiled
+*.class
+*.jar
+*.war
+*.ear

@@ -1,0 +1,41 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+       xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+       xsi:schemaLocation="
+           http://www.springframework.org/schema/beans
+           http://www.springframework.org/schema/beans/spring-beans.xsd">
+
+    <!--
+        Contexte RACINE Spring — chargé par ContextLoaderListener au démarrage.
+        Contient les beans DAO et Service (partagés entre tous les Controllers).
+
+        Injection de dépendances XML :
+          <property name="dao" ref="produitDAO"/>
+          → Spring appelle setProduitDAO(produitDAO) automatiquement
+    -->
+
+    <!-- ════════════════════════════════════════════════════════════ -->
+    <!-- DAOs                                                         -->
+    <!-- ════════════════════════════════════════════════════════════ -->
+
+    <bean id="produitDAO" class="dao.ProduitDAOImpl"/>
+
+    <bean id="userDAO" class="dao.UserDAOImpl"/>
+
+    <!-- ════════════════════════════════════════════════════════════ -->
+    <!-- SERVICES                                                     -->
+    <!-- init-method="initDefaultUsers" → appelé par Spring après    -->
+    <!-- l'injection, insère les users par défaut en BDD             -->
+    <!-- ════════════════════════════════════════════════════════════ -->
+
+    <bean id="produitService" class="services.ProduitServiceImpl">
+        <property name="dao" ref="produitDAO"/>
+    </bean>
+
+    <bean id="userService"
+          class="services.UserServiceImpl"
+          init-method="initDefaultUsers">
+        <property name="userDAO" ref="userDAO"/>
+    </bean>
+
+</beans>
