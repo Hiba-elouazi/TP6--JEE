@@ -13,49 +13,26 @@ import services.UserService;
 import javax.servlet.http.HttpSession;
 import java.util.List;
 
-/**
- * ╔══════════════════════════════════════════════════════════════════╗
- * ║         PRODUIT CONTROLLER — Spring MVC                         ║
- * ╠══════════════════════════════════════════════════════════════════╣
- * ║                                                                  ║
- * ║  @Controller    → Spring détecte cette classe comme Controller  ║
- * ║  @Autowired     → Spring injecte les services automatiquement   ║
- * ║  @RequestMapping→ Mappe les URLs aux méthodes                   ║
- * ║  @GetMapping    → Raccourci pour @RequestMapping(method=GET)    ║
- * ║  @PostMapping   → Raccourci pour @RequestMapping(method=POST)   ║
- * ║  @RequestParam  → Récupère un paramètre de l'URL ou du form     ║
- * ║  RedirectAttributes → Passer des messages après redirect        ║
- * ╚══════════════════════════════════════════════════════════════════╝
- */
+
 @Controller
 public class ProduitController {
-
-    // @Autowired = Spring injecte automatiquement depuis spring-beans.xml
+ 
     @Autowired
     private ProduitService produitService;
 
     @Autowired
     private UserService userService;
 
-    // ════════════════════════════════════════════════════════════════
-    // AUTHENTIFICATION
-    // ════════════════════════════════════════════════════════════════
-
-    /**
-     * GET /login → Afficher le formulaire de connexion
-     */
+ 
     @GetMapping("/login")
     public String loginForm(HttpSession session) {
-        // Si déjà connecté → rediriger vers la liste
+        
         if (session.getAttribute("userConnecte") != null) {
             return "redirect:/produits";
         }
-        return "login";  // → /views/login.jsp
+        return "login";   
     }
-
-    /**
-     * POST /login → Vérifier les identifiants
-     */
+ 
     @PostMapping("/login")
     public String loginSubmit(
             @RequestParam String username,
@@ -76,23 +53,13 @@ public class ProduitController {
             return "login";
         }
     }
-
-    /**
-     * GET /logout → Déconnecter l'utilisateur
-     */
+ 
     @GetMapping("/logout")
     public String logout(HttpSession session) {
         session.invalidate();
         return "redirect:/login";
     }
-
-    // ════════════════════════════════════════════════════════════════
-    // CRUD PRODUITS
-    // ════════════════════════════════════════════════════════════════
-
-    /**
-     * GET /produits → Afficher la liste complète
-     */
+ 
     @GetMapping("/produits")
     public String listeProduits(Model model,
                                 @RequestParam(required = false) String messageSucces,
@@ -101,13 +68,10 @@ public class ProduitController {
         model.addAttribute("listeProduits", produitService.getAllProduits());
         if (messageSucces != null) model.addAttribute("messageSucces", messageSucces);
         if (messageErreur != null) model.addAttribute("messageErreur", messageErreur);
-        return "index";  // → /views/index.jsp
+        return "index";  
     }
 
-    /**
-     * GET /produits/search?idProduit=3 ou ?motCle=pc
-     * Recherche par ID ou mot-clé
-     */
+  
     @GetMapping("/produits/search")
     public String searchProduit(
             Model model,
