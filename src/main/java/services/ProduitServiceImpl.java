@@ -6,16 +6,11 @@ import entities.Produit;
 
 import java.util.List;
 
-/**
- * Implémentation du service Produit.
- * Contient la validation métier + délègue au DAO Hibernate.
- */
+
 public class ProduitServiceImpl implements ProduitService {
 
-    // Injecté par Spring via spring-beans.xml (<property name="dao" ref="produitDAO"/>)
     private ProduitDAO dao;
 
-    // Setter requis pour l'injection XML Spring
     public void setDao(ProduitDAO dao) {
         this.dao = dao;
     }
