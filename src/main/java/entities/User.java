@@ -2,10 +2,7 @@ package entities;
 
 import javax.persistence.*;
 
-/**
- * Entité JPA User — mappée sur la table "users" en MySQL.
- * Rôles : "ADMIN" ou "USER"
- */
+
 @Entity
 @Table(name = "users")
 public class User {
